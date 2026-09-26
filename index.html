@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hamza RH — استشارات قانون العمل والموارد البشرية</title>
+<link rel="apple-touch-icon" href="img/logo.jpg">
+<link rel="icon" href="img/logo.jpg">
+<meta name="theme-color" content="#16202E">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16202E; --ink-soft:#3A4757; --paper:#F7F6F3; --card:#FFFFFF;
+  --crimson:#A31621; --crimson-dk:#7C0F18; --wood:#7A4E24; --gold:#C9A227;
+  --line:#DCD8CE; --ok:#1F6F4A; --warn:#9A6B00;
+  --shadow:0 10px 30px rgba(22,32,46,.10);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#EDEDE8; --ink-soft:#B6BDC7; --paper:#101720; --card:#18212C;
+    --line:#2A3542; --crimson:#E04B54; --crimson-dk:#B23640; --gold:#E0BC4A;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#EDEDE8; --ink-soft:#B6BDC7; --paper:#101720; --card:#18212C;
+  --line:#2A3542; --crimson:#E04B54; --crimson-dk:#B23640; --gold:#E0BC4A;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans Arabic",system-ui,"Segoe UI",Tahoma,sans-serif;
+  font-size:16px; line-height:1.75; overflow-x:hidden;
+}
+h1,h2,h3,.kufi{font-family:"Noto Kufi Arabic",system-ui,sans-serif;font-weight:800;line-height:1.35;letter-spacing:-.01em}
+img{max-width:100%;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--crimson)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- الشريط العلوي ---------- */
+.topbar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:40;
+  display:flex; align-items:center; gap:12px;
+  padding:10px 16px; background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(12px); border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand img{width:38px;height:38px;border-radius:10px;object-fit:cover;box-shadow:var(--shadow)}
+.brand b{font-family:"Noto Kufi Arabic";font-size:17px;letter-spacing:.2px}
+.brand span{display:block;font-size:11px;color:var(--ink-soft);font-weight:400;line-height:1.2}
+.topbar .grow{flex:1}
+.icon-btn{
+  background:transparent;border:1px solid var(--line);border-radius:10px;
+  padding:7px 11px;font-size:13px;cursor:pointer;color:var(--ink-soft);white-space:nowrap
+}
+.icon-btn:hover{border-color:var(--crimson);color:var(--crimson)}
+
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 72px}
+
+/* ---------- الواجهة الأولى ---------- */
+.hero{position:relative;margin:0 -16px;padding:0}
+.hero-media{position:relative}
+.hero-media picture{display:block}
+.hero-media img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:60% 30%}
+.hero-media::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,var(--paper) 2%,rgba(22,32,46,.55) 55%,rgba(22,32,46,.15) 100%);
+}
+.spine{
+  position:absolute;top:0;bottom:0;right:0;width:14px;z-index:2;
+  background:linear-gradient(to bottom,var(--crimson),var(--crimson-dk));
+}
+.hero-text{position:absolute;inset-inline:22px 30px;bottom:14px;z-index:3;color:#fff}
+.hero-text h1{margin:0;font-size:clamp(26px,7.4vw,42px);color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+.hero-text p{margin:6px 0 0;font-size:14.5px;max-width:34ch;color:#F0EDE6;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.seal{
+  display:inline-flex;align-items:center;gap:7px;margin-top:12px;
+  background:var(--crimson);color:#fff;border-radius:999px;padding:5px 13px;font-size:12.5px;font-weight:600
+}
+
+.lede{margin:26px 0 0;font-size:17px;color:var(--ink-soft);max-width:60ch}
+.rule{height:1px;background:var(--line);margin:28px 0}
+
+/* ---------- البطاقات ---------- */
+.panel{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:20px;box-shadow:var(--shadow)
+}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px;color:var(--ink-soft)}
+.field input,.field select,.field textarea{
+  width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:11px;
+  background:var(--paper);transition:border-color .15s
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--crimson)}
+.field textarea{min-height:110px;resize:vertical}
+.hint{font-size:12px;color:var(--ink-soft);margin-top:5px}
+.err{color:var(--crimson);font-size:12.5px;margin-top:6px;display:none}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.row2{grid-template-columns:1fr}}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--crimson);color:#fff;border:0;border-radius:12px;
+  padding:14px 22px;font-weight:600;cursor:pointer;width:100%;font-size:16px
+}
+.btn:hover{background:var(--crimson-dk)}
+.btn.ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--line)}
+.btn.ghost:hover{color:var(--crimson);border-color:var(--crimson)}
+.btn.sm{width:auto;padding:9px 15px;font-size:14px;border-radius:10px}
+.btn.green{background:var(--ok)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+
+/* ---------- الترحيب + الخدمات ---------- */
+.welcome{
+  display:flex;gap:14px;align-items:center;background:var(--card);
+  border:1px solid var(--line);border-right:5px solid var(--crimson);
+  border-radius:14px;padding:16px 18px;margin-bottom:22px;box-shadow:var(--shadow)
+}
+.welcome img{width:54px;height:54px;border-radius:50%;object-fit:cover;flex:none}
+.welcome h2{margin:0;font-size:19px}
+.welcome p{margin:3px 0 0;font-size:13.5px;color:var(--ink-soft)}
+
+.svc{
+  display:block;width:100%;text-align:inherit;background:var(--card);
+  border:1px solid var(--line);border-radius:15px;padding:17px 18px;margin-bottom:12px;
+  cursor:pointer;position:relative;transition:border-color .15s, transform .12s
+}
+.svc:hover{border-color:var(--crimson)}
+.svc[aria-pressed="true"]{border-color:var(--crimson);box-shadow:inset 0 0 0 1px var(--crimson)}
+.svc-head{display:flex;align-items:baseline;gap:10px;justify-content:space-between}
+.svc-head h3{margin:0;font-size:17px}
+.price{font-family:"Noto Kufi Arabic";font-weight:800;color:var(--crimson);white-space:nowrap;font-size:16px}
+.svc p{margin:7px 0 0;font-size:14px;color:var(--ink-soft)}
+.meta{margin-top:9px;font-size:12.5px;color:var(--ink-soft)}
+.empty{text-align:center;padding:34px 18px;border:1px dashed var(--line);border-radius:14px;color:var(--ink-soft)}
+
+.steps{display:flex;gap:6px;margin:22px 0 18px}
+.steps i{height:4px;flex:1;background:var(--line);border-radius:2px}
+.steps i.on{background:var(--crimson)}
+
+/* ---------- التأكيد ---------- */
+.summary{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:18px}
+.summary div{display:flex;justify-content:space-between;gap:14px;padding:11px 16px;border-bottom:1px solid var(--line);font-size:14.5px}
+.summary div:last-child{border-bottom:0}
+.summary b{font-weight:600;color:var(--ink-soft);font-weight:500}
+.done{text-align:center;padding:14px 0}
+.done .tick{width:74px;height:74px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 16px}
+.ref{font-family:"Noto Kufi Arabic";font-size:22px;letter-spacing:2px;color:var(--crimson);margin:8px 0 2px}
+
+/* ---------- المكتبة القانونية ---------- */
+.shelf{margin:0 -16px;padding:0 16px}
+.shelf-head{display:flex;align-items:baseline;gap:10px;margin:0 0 14px}
+.shelf-head h2{margin:0;font-size:21px}
+.shelf-head span{font-size:13px;color:var(--ink-soft)}
+.books{
+  display:flex;gap:7px;align-items:flex-end;overflow-x:auto;padding:16px 4px 0;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch
+}
+.books::-webkit-scrollbar{height:0}
+.book{
+  scroll-snap-align:start;flex:none;width:62px;border-radius:3px 6px 6px 3px;
+  padding:14px 6px 12px;color:#F6F1E6;position:relative;cursor:default;
+  box-shadow:inset -7px 0 12px rgba(0,0,0,.28), inset 2px 0 0 rgba(255,255,255,.22), 0 6px 14px rgba(22,32,46,.22);
+  display:flex;align-items:center;justify-content:center
+}
+.book span{
+  writing-mode:vertical-rl;text-orientation:mixed;font-family:"Noto Kufi Arabic";
+  font-weight:600;font-size:12.5px;line-height:1.25;letter-spacing:.3px;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);white-space:nowrap
+}
+.book::after{content:"";position:absolute;inset-inline:5px 9px;top:8px;height:2px;background:var(--gold);opacity:.85}
+.book::before{content:"";position:absolute;inset-inline:5px 9px;bottom:8px;height:2px;background:var(--gold);opacity:.85}
+.book.b1{height:190px;background:linear-gradient(95deg,#8E1420,#B31F2C 45%,#6E0E17)}
+.book.b2{height:172px;background:linear-gradient(95deg,#17324F,#1F4A72 45%,#10273E)}
+.book.b3{height:200px;background:linear-gradient(95deg,#1D4632,#28613F 45%,#133326)}
+.book.b4{height:164px;background:linear-gradient(95deg,#5C3A17,#7A4E24 45%,#432A0F)}
+.book.b5{height:184px;background:linear-gradient(95deg,#3E2B52,#563A72 45%,#2C1D3C)}
+.book.b6{height:176px;background:linear-gradient(95deg,#6B5A12,#8E7A1D 45%,#4E410B)}
+.book.b7{height:196px;background:linear-gradient(95deg,#1B1F26,#2C333E 45%,#12151A)}
+.shelf-board{
+  height:12px;border-radius:0 0 5px 5px;margin:0 4px;
+  background:linear-gradient(to bottom,#8A5A2B,#5E3A17);
+  box-shadow:0 7px 16px rgba(22,32,46,.3)
+}
+.journals{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:22px}
+@media(max-width:480px){.journals{grid-template-columns:repeat(2,1fr)}}
+.jr{
+  border-radius:4px 9px 9px 4px;padding:13px 12px 12px;color:#F6F1E6;min-height:118px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:inset 4px 0 0 rgba(0,0,0,.22), 0 6px 14px rgba(22,32,46,.18);
+  border:1px solid rgba(0,0,0,.15)
+}
+.jr b{font-family:"Noto Kufi Arabic";font-size:14px;line-height:1.35;display:block}
+.jr em{font-style:normal;font-size:11px;opacity:.85;letter-spacing:.4px}
+.jr.j1{background:linear-gradient(140deg,#A31621,#6E0E17)}
+.jr.j2{background:linear-gradient(140deg,#1F4A72,#10273E)}
+.jr.j3{background:linear-gradient(140deg,#28613F,#133326)}
+.jr.j4{background:linear-gradient(140deg,#7A4E24,#432A0F)}
+.jr.j5{background:linear-gradient(140deg,#563A72,#2C1D3C)}
+.jr.j6{background:linear-gradient(140deg,#2C333E,#12151A)}
+
+/* ---------- عن حمزة ---------- */
+.about{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center}
+@media(max-width:560px){.about{grid-template-columns:1fr}}
+.about picture{display:block}
+.about img{border-radius:14px;box-shadow:var(--shadow);width:100%;aspect-ratio:1;object-fit:cover}
+.gallery picture{display:block}
+.gallery img{border-radius:14px;box-shadow:var(--shadow);width:100%;margin-top:14px}
+
+/* ---------- لوحة المسؤول ---------- */
+.tabs{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 16px;cursor:pointer;font-size:14px}
+.tab.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.req{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:11px}
+.req .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.req h3{margin:0;font-size:16px}
+.tag{font-size:11.5px;border-radius:999px;padding:3px 10px;border:1px solid var(--line);color:var(--ink-soft);white-space:nowrap}
+.tag.new{background:var(--crimson);color:#fff;border-color:transparent}
+.tag.doing{background:var(--warn);color:#fff;border-color:transparent}
+.tag.done{background:var(--ok);color:#fff;border-color:transparent}
+.req dl{margin:9px 0 0;font-size:13.5px;color:var(--ink-soft);display:grid;grid-template-columns:auto 1fr;gap:3px 10px}
+.req dt{font-weight:600}
+.req dd{margin:0;word-break:break-word}
+.req .problem{margin-top:10px;padding:10px 12px;background:var(--paper);border-radius:10px;font-size:13.5px;white-space:pre-wrap}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.stat div{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:13px;text-align:center}
+.stat b{display:block;font-family:"Noto Kufi Arabic";font-size:23px}
+.stat span{font-size:12px;color:var(--ink-soft)}
+
+.toast{
+  position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);
+  background:var(--ink);color:var(--paper);padding:11px 20px;border-radius:999px;font-size:14px;
+  z-index:99;opacity:0;pointer-events:none;transition:opacity .2s
+}
+.toast.show{opacity:1}
+.hidden{display:none!important}
+footer{text-align:center;font-size:12.5px;color:var(--ink-soft);padding:30px 16px 10px;border-top:1px solid var(--line);margin-top:40px}
+.modal-bg{position:fixed;inset:0;background:rgba(10,15,22,.6);z-index:60;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:var(--card);border-radius:18px;padding:22px;max-width:520px;width:100%;max-height:88vh;overflow:auto;box-shadow:var(--shadow)}
+.modal h2{margin:0 0 16px;font-size:20px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <img src="img/logo.jpg" alt="">
+    <div><b>Hamza RH</b><span>استشارات قانون العمل والموارد البشرية</span></div>
+  </div>
+  <div class="grow"></div>
+  <button class="icon-btn" id="adminBtn">لوحة المسؤول</button>
+</div>
+
+<div class="wrap">
+
+<!-- ===================== الزائر ===================== -->
+<main id="clientApp">
+
+  <!-- الشاشة 1 : الاستقبال -->
+  <section id="scr-intro">
+    <div class="hero">
+      <div class="spine"></div>
+      <div class="hero-media"><picture><source srcset="img/hero.webp" type="image/webp"><img src="img/hero.jpg" alt="حمزة أثناء مراجعة قانون العمل" fetchpriority="high" decoding="async"></picture></div>
+      <div class="hero-text">
+        <h1>قانون العمل،<br>مشروح ومطبَّق</h1>
+        <p>استشارات، مقابلات فيديو، وتحرير وثائق الموارد البشرية — مع حمزة.</p>
+        <span class="seal">مرجعنا: قانون العمل الجزائري</span>
+      </div>
+    </div>
+
+    <p class="lede">اطرح انشغالك مرة واحدة، واختر الصيغة التي تناسبك. يصلك الرد على الواتساب بعد مراجعة ملفك.</p>
+    <br>
+    <button class="btn" id="startBtn">ابدأ الآن</button>
+    <p class="hint" style="text-align:center">يستغرق الأمر أقل من دقيقة.</p>
+
+    <div class="rule"></div>
+
+    <div class="shelf">
+      <div class="shelf-head">
+        <h2>المراجع التي نعمل بها</h2>
+        <span>نصوص، لا اجتهادات شخصية</span>
+      </div>
+      <div class="books">
+        <div class="book b1"><span>قانون العمل 90-11</span></div>
+        <div class="book b2"><span>علاقات العمل</span></div>
+        <div class="book b3"><span>الضمان الاجتماعي</span></div>
+        <div class="book b4"><span>الاتفاقيات الجماعية</span></div>
+        <div class="book b5"><span>تفتيش العمل</span></div>
+        <div class="book b6"><span>الوقاية الصحية والأمن</span></div>
+        <div class="book b7"><span>المنازعات العمالية</span></div>
+      </div>
+      <div class="shelf-board"></div>
+
+      <div class="journals">
+        <div class="jr j1"><b>الجريدة الرسمية</b><em>المراسيم التنفيذية</em></div>
+        <div class="jr j2"><b>مجلة المحكمة العليا</b><em>الغرفة الاجتماعية</em></div>
+        <div class="jr j3"><b>مجلة مجلس الدولة</b><em>قرارات مبدئية</em></div>
+        <div class="jr j4"><b>نشرة العمل والتشغيل</b><em>تعليمات وزارية</em></div>
+        <div class="jr j5"><b>مجلة القانون الاجتماعي</b><em>دراسات وتعليقات</em></div>
+        <div class="jr j6"><b>دليل المفتشية</b><em>إجراءات ميدانية</em></div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="panel about">
+      <picture><source srcset="img/portrait.webp" type="image/webp"><img src="img/portrait.jpg" alt="حمزة" loading="lazy" decoding="async"></picture>
+      <div>
+        <h2 style="margin:0 0 6px;font-size:20px">من يتابع ملفك</h2>
+        <p style="margin:0;color:var(--ink-soft);font-size:14.5px">
+          حمزة، مختص في الموارد البشرية وتطبيق قانون العمل: عقود، أجور، عطل، نزاعات فردية، وتأطير المؤسسات.
+        </p>
+      </div>
+    </div>
+
+    <div class="gallery"><picture><source srcset="img/team.webp" type="image/webp"><img src="img/team.jpg" alt="جلسة تأطير داخل المؤسسة" loading="lazy" decoding="async"></picture></div>
+    <p class="hint" style="text-align:center">جلسة تأطير ميدانية داخل المؤسسة.</p>
+  </section>
+
+  <!-- الشاشة 2 : بيانات الزبون -->
+  <section id="scr-form" class="hidden">
+    <div class="steps"><i class="on"></i><i></i><i></i></div>
+    <h2 style="font-size:23px;margin:0 0 4px">قبل أن نبدأ</h2>
+    <p style="margin:0 0 20px;color:var(--ink-soft);font-size:14.5px">تُستعمل هذه المعطيات للتواصل معك فقط.</p>
+
+    <div class="panel">
+      <div class="field">
+        <label for="f-name">الاسم واللقب</label>
+        <input id="f-name" autocomplete="name" placeholder="محمد بن عيسى">
+        <div class="err" id="e-name">اكتب اسمك من فضلك.</div>
+      </div>
+      <div class="field">
+        <label for="f-gender">الجنس</label>
+        <select id="f-gender">
+          <option value="">اختر…</option>
+          <option value="m">ذكر</option>
+          <option value="f">أنثى</option>
+        </select>
+        <div class="err" id="e-gender">اختر الجنس لنخاطبك بالصيغة الصحيحة.</div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-phone">رقم الهاتف</label>
+          <input id="f-phone" type="tel" inputmode="tel" placeholder="05 00 00 00 00">
+          <div class="err" id="e-phone">رقم الهاتف غير صالح.</div>
+        </div>
+        <div class="field">
+          <label for="f-wa">رقم الواتساب</label>
+          <input id="f-wa" type="tel" inputmode="tel" placeholder="اتركه فارغًا إن كان نفسه">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-email">البريد الإلكتروني</label>
+        <input id="f-email" type="email" inputmode="email" placeholder="exemple@mail.com">
+        <div class="err" id="e-email">البريد الإلكتروني غير صالح.</div>
+      </div>
+      <button class="btn" id="toServices">تابع</button>
+    </div>
+    <br>
+    <button class="btn ghost" data-back="scr-intro">رجوع</button>
+  </section>
+
+  <!-- الشاشة 3 : الخدمات -->
+  <section id="scr-services" class="hidden">
+    <div class="steps"><i class="on"></i><i class="on"></i><i></i></div>
+    <div class="welcome">
+      <img src="img/logo.jpg" alt="">
+      <div><h2 id="welcomeLine">مرحبًا بك</h2><p>اختر الخدمة التي تناسب حالتك.</p></div>
+    </div>
+    <div id="svcList"></div>
+
+    <div class="field" style="margin-top:20px">
+      <label for="f-problem">اشرح مشكلتك (اختياري لكنه يسرّع الرد)</label>
+      <textarea id="f-problem" placeholder="مثال: أنهى صاحب العمل عقدي قبل نهاية المدة ولم أتقاضَ تعويضًا…"></textarea>
+    </div>
+
+    <button class="btn" id="toConfirm" disabled>مراجعة الطلب</button>
+    <br><br>
+    <button class="btn ghost" data-back="scr-form">رجوع</button>
+  </section>
+
+  <!-- الشاشة 4 : التأكيد -->
+  <section id="scr-confirm" class="hidden">
+    <div class="steps"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    <h2 style="font-size:23px;margin:0 0 16px">راجع طلبك</h2>
+    <div class="summary" id="sumBox"></div>
+    <button class="btn" id="sendReq">أرسل الطلب</button>
+    <br><br>
+    <button class="btn ghost" data-back="scr-services">تعديل</button>
+  </section>
+
+  <!-- الشاشة 5 : تم -->
+  <section id="scr-done" class="hidden">
+    <div class="panel done">
+      <div class="tick">✓</div>
+      <h2 style="margin:0">وصل طلبك</h2>
+      <div class="ref" id="refCode">—</div>
+      <p style="color:var(--ink-soft);font-size:14px;margin:4px 0 18px">احتفظ بهذا الرقم، هو مرجع ملفك.</p>
+      <a class="btn" id="waLink" href="#" target="_blank" rel="noopener">أكمل على الواتساب</a>
+      <br>
+      <button class="btn ghost" id="newReq">طلب آخر</button>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== المسؤول ===================== -->
+<main id="adminApp" class="hidden">
+  <h2 style="font-size:23px;margin:22px 0 2px">لوحة حمزة</h2>
+  <p style="margin:0;color:var(--ink-soft);font-size:14px">تتحكم هنا في الخدمات، الأسعار والطلبات.</p>
+
+  <div class="tabs">
+    <button class="tab on" data-tab="t-req">الطلبات</button>
+    <button class="tab" data-tab="t-svc">الخدمات والأسعار</button>
+    <button class="tab" data-tab="t-set">الإعدادات</button>
+    <button class="tab" id="exitAdmin" style="margin-inline-start:auto">خروج</button>
+  </div>
+
+  <section id="t-req">
+    <div class="stat">
+      <div><b id="sTotal">0</b><span>كل الطلبات</span></div>
+      <div><b id="sNew">0</b><span>جديدة</span></div>
+      <div><b id="sSum">0</b><span>القيمة (دج)</span></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+      <button class="btn ghost sm" id="expCsv">تصدير CSV</button>
+      <button class="btn ghost sm" id="clrReq">حذف كل الطلبات</button>
+    </div>
+    <div id="reqList"></div>
+  </section>
+
+  <section id="t-svc" class="hidden">
+    <button class="btn sm" id="addSvc" style="margin-bottom:14px">+ خدمة جديدة</button>
+    <div id="svcAdmin"></div>
+  </section>
+
+  <section id="t-set" class="hidden">
+    <div class="panel">
+      <div class="field">
+        <label for="s-wa">واتساب حمزة (بصيغة دولية بدون +)</label>
+        <input id="s-wa" placeholder="213xxxxxxxxx">
+        <div class="hint">يُستعمل في زر «أكمل على الواتساب» عند الزبون.</div>
+      </div>
+      <div class="field">
+        <label for="s-cur">العملة</label>
+        <input id="s-cur" placeholder="دج">
+      </div>
+      <div class="field">
+        <label for="s-pass">كلمة سر اللوحة</label>
+        <input id="s-pass" type="text">
+      </div>
+      <button class="btn" id="saveSet">حفظ الإعدادات</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Hamza RH — استشارات قانون العمل والموارد البشرية<br>
+  <span id="modeTag" style="font-size:11px"></span>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="modalRoot"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   إعداد فايربايز — املأ هذا الكائن عند الاستضافة الحقيقية.
+   إن بقي فارغًا يعمل الموقع بالتخزين المحلي (وضع تجريبي).
+   ============================================================ */
+var FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBgDgVZ5NIltBfH56QDjHQjelBvovSffEk",
+  authDomain: "hamza-rh.firebaseapp.com",
+  projectId: "hamza-rh",
+  storageBucket: "hamza-rh.firebasestorage.app",
+  messagingSenderId: "742421271235",
+  appId: "1:742421271235:web:b62a45c088c6b4585f0876"
+};
+
+/* ---------- طبقة التخزين ---------- */
+var LS = {
+  key: "hamzarh_v1",
+  read: function(){ try{ return JSON.parse(localStorage.getItem(this.key)||"null"); }catch(e){ return null; } },
+  write: function(d){ try{ localStorage.setItem(this.key, JSON.stringify(d)); }catch(e){} }
+};
+
+var DEFAULTS = {
+  settings:{ whatsapp:"", currency:"دج", pass:"hamza2026" },
+  services:[
+    { id:"s1", title:"استشارة قانونية مكتوبة", price:1500, desc:"تحليل وضعيتك على ضوء قانون العمل، مع جواب مكتوب مدعّم بالمواد القانونية.", meta:"الرد خلال 24 ساعة" },
+    { id:"s2", title:"مقابلة فيديو", price:3000, desc:"جلسة مباشرة لمناقشة ملفك خطوة بخطوة وتحديد الإجراءات الواجب اتخاذها.", meta:"45 دقيقة — عبر الفيديو" },
+    { id:"s3", title:"تحرير وثائق", price:2500, desc:"إعداد عقد عمل، إعذار، شهادة عمل، أو رسالة نزاع جاهزة للإمضاء.", meta:"وثيقة واحدة — نسخة PDF وWord" }
+  ],
+  requests:[]
+};
+
+var Store = {
+  mode:"local", db:null, data:null,
+  init: function(){
+    var self=this;
+    var hasFb = FIREBASE_CONFIG && FIREBASE_CONFIG.projectId;
+    if(!hasFb){ self.data = LS.read() || JSON.parse(JSON.stringify(DEFAULTS)); return Promise.resolve(); }
+    return import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js").then(function(a){
+      return Promise.all([
+        import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"),
+        import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js")
+      ]).then(function(mods){
+        var f=mods[0]; self.authMod=mods[1];
+        var app=a.initializeApp(FIREBASE_CONFIG); self.fs=f; self.db=f.getFirestore(app); self.mode="firebase";
+        self.auth=self.authMod.getAuth(app);
+        // ذاكرة مؤقتة لساعة واحدة: تقلّص قراءات Firestore إلى الحد الأدنى
+        var cached=null;
+        try{ cached=JSON.parse(localStorage.getItem("hamzarh_cache")||"null"); }catch(e){}
+        if(cached && (Date.now()-cached.t) < 3600000 && cached.services && cached.services.length){
+          self.data={ settings:cached.settings, services:cached.services, requests:[] };
+          return;
+        }
+        return Promise.all([
+          f.getDoc(f.doc(self.db,"config","main")),
+          f.getDocs(f.query(f.collection(self.db,"services"), f.orderBy("order","asc")))
+        ]).then(function(r){
+          self.data={ settings: r[0].exists()? r[0].data() : DEFAULTS.settings, services:[], requests:[] };
+          r[1].forEach(function(d){ var o=d.data(); o.id=d.id; self.data.services.push(o); });
+          if(!self.data.services.length) self.data.services=JSON.parse(JSON.stringify(DEFAULTS.services));
+          try{ localStorage.setItem("hamzarh_cache", JSON.stringify({
+            t:Date.now(), settings:self.data.settings, services:self.data.services })); }catch(e){}
+        });
+      });
+    }).catch(function(e){
+      console.warn("Firebase indisponible, mode local:",e);
+      self.data = LS.read() || JSON.parse(JSON.stringify(DEFAULTS));
+    });
+  },
+  save: function(){ if(this.mode==="local") LS.write(this.data); },
+  addRequest: function(r){
+    var self=this;
+    if(this.mode==="firebase"){
+      var f=this.fs;
+      return f.addDoc(f.collection(this.db,"requests"), r).then(function(){ return r; })
+              .catch(function(){ self.data.requests.unshift(r); self.save(); return r; });
+    }
+    this.data.requests.unshift(r); this.save(); return Promise.resolve(r);
+  },
+  loadRequests: function(){
+    var self=this;
+    if(this.mode==="firebase"){
+      var f=this.fs;
+      return f.getDocs(f.query(f.collection(this.db,"requests"), f.orderBy("createdAt","desc"), f.limit(300)))
+        .then(function(s){ var a=[]; s.forEach(function(d){ var o=d.data(); o._fid=d.id; a.push(o); }); self.data.requests=a; });
+    }
+    return Promise.resolve();
+  },
+  syncServices: function(){
+    var self=this;
+    if(this.mode!=="firebase"){ this.save(); return Promise.resolve(); }
+    this.bust();
+    var f=this.fs, ops=this.data.services.map(function(s,i){
+      var o=Object.assign({},s); delete o.id; o.order=i;
+      return f.setDoc(f.doc(self.db,"services",s.id), o);
+    });
+    return Promise.all(ops);
+  },
+  bust: function(){ try{ localStorage.removeItem("hamzarh_cache"); }catch(e){} },
+  syncSettings: function(){
+    if(this.mode!=="firebase"){ this.save(); return Promise.resolve(); }
+    this.bust();
+    return this.fs.setDoc(this.fs.doc(this.db,"config","main"), this.data.settings);
+  }
+};
+
+/* ---------- أدوات ---------- */
+var $=function(s){return document.querySelector(s);},
+    $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s));};
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function money(n){ return Number(n||0).toLocaleString("fr-DZ")+" "+(Store.data.settings.currency||"دج"); }
+function toast(m){ var t=$("#toast"); t.textContent=m; t.classList.add("show"); setTimeout(function(){t.classList.remove("show");},2200); }
+function show(id){
+  ["scr-intro","scr-form","scr-services","scr-confirm","scr-done"].forEach(function(s){
+    var el=$("#"+s); if(el) el.classList.toggle("hidden", s!==id);
+  });
+  window.scrollTo({top:0,behavior:"instant"});
+}
+function digits(s){ return String(s||"").replace(/[^\d+]/g,""); }
+
+/* ---------- حالة الزبون ---------- */
+var client={}, picked=null;
+
+/* ---------- الخدمات عند الزبون ---------- */
+function renderServices(){
+  var box=$("#svcList"), list=Store.data.services||[];
+  if(!list.length){ box.innerHTML='<div class="empty">لم يُضف حمزة أي خدمة بعد.</div>'; return; }
+  box.innerHTML = list.map(function(s){
+    return '<button class="svc" aria-pressed="false" data-id="'+esc(s.id)+'">'
+      + '<div class="svc-head"><h3>'+esc(s.title)+'</h3><span class="price">'+esc(money(s.price))+'</span></div>'
+      + (s.desc?'<p>'+esc(s.desc)+'</p>':'')
+      + (s.meta?'<div class="meta">'+esc(s.meta)+'</div>':'')
+      + '</button>';
+  }).join("");
+  $$("#svcList .svc").forEach(function(b){
+    b.addEventListener("click",function(){
+      $$("#svcList .svc").forEach(function(x){x.setAttribute("aria-pressed","false");});
+      b.setAttribute("aria-pressed","true");
+      picked = Store.data.services.filter(function(s){return s.id===b.dataset.id;})[0];
+      $("#toConfirm").disabled=false;
+    });
+  });
+}
+
+/* ---------- تدفّق الزبون ---------- */
+$("#startBtn").addEventListener("click",function(){ show("scr-form"); });
+$$("[data-back]").forEach(function(b){ b.addEventListener("click",function(){ show(b.dataset.back); }); });
+
+$("#toServices").addEventListener("click",function(){
+  var name=$("#f-name").value.trim(), g=$("#f-gender").value,
+      ph=$("#f-phone").value.trim(), em=$("#f-email").value.trim(), wa=$("#f-wa").value.trim();
+  var ok=true;
+  function mark(id,cond){ $("#"+id).style.display=cond?"none":"block"; if(!cond) ok=false; }
+  mark("e-name", name.length>=3);
+  mark("e-gender", !!g);
+  mark("e-phone", digits(ph).length>=8);
+  mark("e-email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em));
+  if(!ok){ toast("راجع الحقول المظللة"); return; }
+  client={ name:name, gender:g, phone:ph, email:em, whatsapp:wa||ph };
+  $("#welcomeLine").textContent = "مرحبًا بك "+(g==="f"?"سيدة ":"سيد ")+name;
+  renderServices();
+  show("scr-services");
+});
+
+$("#toConfirm").addEventListener("click",function(){
+  if(!picked){ toast("اختر خدمة أولًا"); return; }
+  client.problem=$("#f-problem").value.trim();
+  $("#sumBox").innerHTML =
+    row("الاسم",(client.gender==="f"?"سيدة ":"سيد ")+client.name)+
+    row("الهاتف",client.phone)+ row("الواتساب",client.whatsapp)+ row("البريد",client.email)+
+    row("الخدمة",picked.title)+ row("الثمن",money(picked.price))+
+    (client.problem?row("انشغالك",client.problem):"");
+  show("scr-confirm");
+  function row(k,v){ return "<div><b>"+esc(k)+"</b><span>"+esc(v)+"</span></div>"; }
+});
+
+$("#sendReq").addEventListener("click",function(){
+  var btn=this; btn.disabled=true; btn.textContent="جارٍ الإرسال…";
+  var ref="HRH-"+Date.now().toString(36).slice(-5).toUpperCase();
+  var r={ ref:ref, createdAt:new Date().toISOString(), name:client.name, gender:client.gender,
+          phone:client.phone, whatsapp:client.whatsapp, email:client.email,
+          serviceId:picked.id, service:picked.title, price:Number(picked.price)||0,
+          problem:client.problem||"", status:"new" };
+  Store.addRequest(r).then(function(){
+    $("#refCode").textContent=ref;
+    var wa=digits(Store.data.settings.whatsapp).replace(/\D/g,"");
+    var msg="السلام عليكم، أنا "+client.name+". طلبي رقم "+ref+" — "+picked.title+" ("+money(picked.price)+").";
+    var link=$("#waLink");
+    if(wa){ link.href="https://wa.me/"+wa+"?text="+encodeURIComponent(msg); link.classList.remove("hidden"); }
+    else { link.classList.add("hidden"); }
+    show("scr-done");
+  }).catch(function(){ toast("تعذّر الإرسال، أعد المحاولة"); })
+    .then(function(){ btn.disabled=false; btn.textContent="أرسل الطلب"; });
+});
+
+$("#newReq").addEventListener("click",function(){
+  picked=null; $("#f-problem").value=""; $("#toConfirm").disabled=true;
+  renderServices(); show("scr-services");
+});
+
+/* ---------- لوحة المسؤول ---------- */
+function modal(html){
+  $("#modalRoot").innerHTML='<div class="modal-bg"><div class="modal">'+html+'</div></div>';
+  $("#modalRoot .modal-bg").addEventListener("click",function(e){ if(e.target===this) closeModal(); });
+}
+function closeModal(){ $("#modalRoot").innerHTML=""; }
+
+$("#adminBtn").addEventListener("click",function(){
+  var fb = Store.mode==="firebase";
+  modal('<h2>دخول المسؤول</h2>'
+      + (fb?'<div class="field"><label for="m-e">البريد الإلكتروني</label><input id="m-e" type="email" autocomplete="username"></div>':'')
+      + '<div class="field"><label for="m-p">كلمة السر</label>'
+      + '<input id="m-p" type="password" autocomplete="current-password"></div>'
+      + '<button class="btn" id="m-ok">دخول</button><br><br>'
+      + '<button class="btn ghost" id="m-no">إلغاء</button>');
+  $(fb?"#m-e":"#m-p").focus();
+  $("#m-no").addEventListener("click",closeModal);
+  $("#m-p").addEventListener("keydown",function(e){ if(e.key==="Enter") $("#m-ok").click(); });
+  $("#m-ok").addEventListener("click",function(){
+    var btn=this;
+    if(!fb){
+      if($("#m-p").value===(Store.data.settings.pass||"hamza2026")){ closeModal(); openAdmin(); }
+      else toast("كلمة السر غير صحيحة");
+      return;
+    }
+    btn.disabled=true; btn.textContent="جارٍ التحقق…";
+    Store.authMod.signInWithEmailAndPassword(Store.auth,$("#m-e").value.trim(),$("#m-p").value)
+      .then(function(){ closeModal(); openAdmin(); })
+      .catch(function(){ toast("البريد أو كلمة السر غير صحيحة"); btn.disabled=false; btn.textContent="دخول"; });
+  });
+});
+
+function openAdmin(){
+  $("#clientApp").classList.add("hidden"); $("#adminApp").classList.remove("hidden");
+  $("#s-wa").value=Store.data.settings.whatsapp||"";
+  $("#s-cur").value=Store.data.settings.currency||"دج";
+  $("#s-pass").value=Store.data.settings.pass||"hamza2026";
+  Store.loadRequests().then(renderAdmin);
+  window.scrollTo({top:0});
+}
+$("#exitAdmin").addEventListener("click",function(){
+  if(Store.mode==="firebase" && Store.auth){ try{ Store.authMod.signOut(Store.auth); }catch(e){} }
+  $("#adminApp").classList.add("hidden"); $("#clientApp").classList.remove("hidden"); show("scr-intro");
+});
+$$(".tab[data-tab]").forEach(function(t){
+  t.addEventListener("click",function(){
+    $$(".tab[data-tab]").forEach(function(x){x.classList.remove("on");});
+    t.classList.add("on");
+    ["t-req","t-svc","t-set"].forEach(function(s){ $("#"+s).classList.toggle("hidden", s!==t.dataset.tab); });
+  });
+});
+
+function renderAdmin(){ renderReqs(); renderSvcAdmin(); }
+
+function renderReqs(){
+  var list=Store.data.requests||[], box=$("#reqList");
+  $("#sTotal").textContent=list.length;
+  $("#sNew").textContent=list.filter(function(r){return r.status==="new";}).length;
+  $("#sSum").textContent=list.reduce(function(a,r){return a+(Number(r.price)||0);},0).toLocaleString("fr-DZ");
+  if(!list.length){ box.innerHTML='<div class="empty">لا توجد طلبات بعد.</div>'; return; }
+  var labels={new:"جديد",doing:"قيد المعالجة",done:"منجز"};
+  box.innerHTML=list.map(function(r,i){
+    var d=new Date(r.createdAt);
+    return '<article class="req"><div class="top"><h3>'+esc((r.gender==="f"?"سيدة ":"سيد ")+r.name)+'</h3>'
+      +'<span class="tag '+esc(r.status)+'">'+esc(labels[r.status]||r.status)+'</span></div>'
+      +'<dl><dt>المرجع</dt><dd>'+esc(r.ref)+'</dd>'
+      +'<dt>الخدمة</dt><dd>'+esc(r.service)+' — '+esc(money(r.price))+'</dd>'
+      +'<dt>الهاتف</dt><dd>'+esc(r.phone)+'</dd>'
+      +'<dt>الواتساب</dt><dd>'+esc(r.whatsapp)+'</dd>'
+      +'<dt>البريد</dt><dd>'+esc(r.email)+'</dd>'
+      +'<dt>التاريخ</dt><dd>'+esc(d.toLocaleString("fr-DZ"))+'</dd></dl>'
+      +(r.problem?'<div class="problem">'+esc(r.problem)+'</div>':'')
+      +'<div class="actions">'
+      +'<a class="btn ghost sm" target="_blank" rel="noopener" href="https://wa.me/'+esc(digits(r.whatsapp).replace(/\D/g,""))+'">واتساب</a>'
+      +'<a class="btn ghost sm" href="tel:'+esc(digits(r.phone))+'">اتصال</a>'
+      +'<button class="btn ghost sm" data-st="doing" data-i="'+i+'">قيد المعالجة</button>'
+      +'<button class="btn green sm" data-st="done" data-i="'+i+'">منجز</button>'
+      +'</div></article>';
+  }).join("");
+  $$("#reqList [data-st]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var r=Store.data.requests[+b.dataset.i]; r.status=b.dataset.st;
+      if(Store.mode==="firebase" && r._fid){ Store.fs.updateDoc(Store.fs.doc(Store.db,"requests",r._fid),{status:r.status}); }
+      else Store.save();
+      renderReqs();
+    });
+  });
+}
+
+function renderSvcAdmin(){
+  var box=$("#svcAdmin"), list=Store.data.services||[];
+  if(!list.length){ box.innerHTML='<div class="empty">أضف خدمتك الأولى.</div>'; return; }
+  box.innerHTML=list.map(function(s,i){
+    return '<article class="req"><div class="top"><h3>'+esc(s.title)+'</h3><span class="price">'+esc(money(s.price))+'</span></div>'
+      +(s.desc?'<p style="margin:8px 0 0;font-size:13.5px;color:var(--ink-soft)">'+esc(s.desc)+'</p>':'')
+      +(s.meta?'<div class="meta">'+esc(s.meta)+'</div>':'')
+      +'<div class="actions"><button class="btn ghost sm" data-ed="'+i+'">تعديل</button>'
+      +'<button class="btn ghost sm" data-del="'+i+'">حذف</button>'
+      +'<button class="btn ghost sm" data-up="'+i+'">↑</button>'
+      +'<button class="btn ghost sm" data-dn="'+i+'">↓</button></div></article>';
+  }).join("");
+  $$("#svcAdmin [data-ed]").forEach(function(b){ b.addEventListener("click",function(){ svcForm(+b.dataset.ed); }); });
+  $$("#svcAdmin [data-del]").forEach(function(b){ b.addEventListener("click",function(){
+    var i=+b.dataset.del, s=Store.data.services[i];
+    if(!confirm("حذف «"+s.title+"»؟")) return;
+    if(Store.mode==="firebase"){ Store.fs.deleteDoc(Store.fs.doc(Store.db,"services",s.id)); }
+    Store.data.services.splice(i,1); Store.syncServices().then(function(){ Store.save(); renderSvcAdmin(); });
+  });});
+  $$("#svcAdmin [data-up]").forEach(function(b){ b.addEventListener("click",function(){ move(+b.dataset.up,-1); }); });
+  $$("#svcAdmin [data-dn]").forEach(function(b){ b.addEventListener("click",function(){ move(+b.dataset.dn, 1); }); });
+  function move(i,d){
+    var a=Store.data.services, j=i+d; if(j<0||j>=a.length) return;
+    var t=a[i]; a[i]=a[j]; a[j]=t;
+    Store.syncServices().then(function(){ Store.save(); renderSvcAdmin(); });
+  }
+}
+
+$("#addSvc").addEventListener("click",function(){ svcForm(-1); });
+
+function svcForm(i){
+  var s = i>=0 ? Store.data.services[i] : {title:"",price:"",desc:"",meta:""};
+  modal('<h2>'+(i>=0?"تعديل الخدمة":"خدمة جديدة")+'</h2>'
+    +'<div class="field"><label for="x-t">اسم الخدمة</label><input id="x-t" value="'+esc(s.title)+'"></div>'
+    +'<div class="field"><label for="x-p">الثمن</label><input id="x-p" type="number" inputmode="numeric" value="'+esc(s.price)+'"></div>'
+    +'<div class="field"><label for="x-d">شرح مختصر للزبون</label><textarea id="x-d">'+esc(s.desc)+'</textarea></div>'
+    +'<div class="field"><label for="x-m">تفصيل إضافي (المدة، الشكل…)</label><input id="x-m" value="'+esc(s.meta)+'"></div>'
+    +'<button class="btn" id="x-ok">حفظ</button><br><br><button class="btn ghost" id="x-no">إلغاء</button>');
+  $("#x-no").addEventListener("click",closeModal);
+  $("#x-ok").addEventListener("click",function(){
+    var t=$("#x-t").value.trim();
+    if(!t){ toast("اكتب اسم الخدمة"); return; }
+    var o={ id: i>=0 ? s.id : "s"+Date.now().toString(36),
+            title:t, price:Number($("#x-p").value)||0,
+            desc:$("#x-d").value.trim(), meta:$("#x-m").value.trim() };
+    if(i>=0) Store.data.services[i]=o; else Store.data.services.push(o);
+    Store.syncServices().then(function(){ Store.save(); closeModal(); renderSvcAdmin(); toast("حُفظت الخدمة"); });
+  });
+}
+
+$("#saveSet").addEventListener("click",function(){
+  Store.data.settings.whatsapp=$("#s-wa").value.trim();
+  Store.data.settings.currency=$("#s-cur").value.trim()||"دج";
+  Store.data.settings.pass=$("#s-pass").value.trim()||"hamza2026";
+  Store.syncSettings().then(function(){ Store.save(); toast("حُفظت الإعدادات"); });
+});
+
+$("#expCsv").addEventListener("click",function(){
+  var rows=[["المرجع","التاريخ","الاسم","الجنس","الهاتف","الواتساب","البريد","الخدمة","الثمن","الحالة","المشكلة"]];
+  (Store.data.requests||[]).forEach(function(r){
+    rows.push([r.ref,r.createdAt,r.name,r.gender==="f"?"أنثى":"ذكر",r.phone,r.whatsapp,r.email,r.service,r.price,r.status,(r.problem||"").replace(/\n/g," ")]);
+  });
+  var csv="\uFEFF"+rows.map(function(r){return r.map(function(c){return '"'+String(c==null?"":c).replace(/"/g,'""')+'"';}).join(";");}).join("\n");
+  try{
+    var a=document.createElement("a");
+    a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+    a.download="hamza-rh-requests.csv"; document.body.appendChild(a); a.click(); a.remove();
+  }catch(e){ toast("التنزيل غير متاح هنا"); }
+});
+
+$("#clrReq").addEventListener("click",function(){
+  if(!confirm("حذف كل الطلبات نهائيًا؟")) return;
+  if(Store.mode==="firebase"){ toast("الحذف الجماعي يتم من وحدة تحكم فايربايز"); return; }
+  Store.data.requests=[]; Store.save(); renderReqs(); toast("حُذفت الطلبات");
+});
+
+/* ---------- الإقلاع ---------- */
+Store.init().then(function(){
+  renderServices();
+  $("#modeTag").textContent = Store.mode==="firebase"
+    ? "متصل بقاعدة بيانات فايربايز"
+    : "وضع تجريبي — البيانات محفوظة في هذا الجهاز فقط";
+});
+})();
+</script>
+<script>
+if("serviceWorker" in navigator){ window.addEventListener("load",function(){
+  navigator.serviceWorker.register("sw.js").catch(function(){});
+});}
+</script>
+</body>
+</html>
